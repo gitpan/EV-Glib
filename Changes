@@ -1,0 +1,4 @@
+Revision history for EV::Glib
+
+0.1  Sat Dec  8 16:11:02 CET 2007
+	- original version, a Glib::EV clone.
