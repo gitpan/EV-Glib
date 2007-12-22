@@ -88,13 +88,13 @@ prepare_cb (EV_P_ ev_prepare *w, int revents)
       );
       iow->data = (void *)pfd;
       ev_set_priority (iow, EV_MINPRI);
-      ev_io_start (EV_A_ iow);
+      ev_io_start (EV_A, iow);
     }
 
   if (timeout >= 0)
     {
       ev_timer_set (&ctx->tw, timeout * 1e-3, 0.);
-      ev_timer_start (EV_A_ &ctx->tw);
+      ev_timer_start (EV_A, &ctx->tw);
     }
 }
 
@@ -111,18 +111,18 @@ check_cb (EV_P_ ev_check *w, int revents)
       if (ev_is_pending (iow))
         {
           GPollFD *pfd = ctx->pfd + i;
-          int revents = ev_clear_pending (iow);
+          int revents = ev_clear_pending (EV_A, iow);
 
           pfd->revents |= pfd->events &
             ((revents & EV_READ ? G_IO_IN : 0)
              | (revents & EV_READ ? G_IO_OUT : 0));
         }
 
-      ev_io_stop (EV_A_ iow);
+      ev_io_stop (EV_A, iow);
     }
 
   if (ev_is_active (&ctx->tw))
-    ev_timer_stop (EV_A_ &ctx->tw);
+    ev_timer_stop (EV_A, &ctx->tw);
 
   g_main_context_check (ctx->gc, ctx->maxpri, ctx->pfd, ctx->nfd);
 }
@@ -153,11 +153,11 @@ install (SV *context)
 
         ev_prepare_init (&ctx->pw, prepare_cb);
         ev_set_priority (&ctx->pw, EV_MINPRI);
-        ev_prepare_start (EV_DEFAULT_ &ctx->pw);
+        ev_prepare_start (EV_DEFAULT, &ctx->pw);
 
         ev_check_init (&ctx->cw, check_cb);
         ev_set_priority (&ctx->cw, EV_MAXPRI);
-        ev_check_start (EV_DEFAULT_ &ctx->cw);
+        ev_check_start (EV_DEFAULT, &ctx->cw);
 
         ev_init (&ctx->tw, timer_cb);
         ev_set_priority (&ctx->tw, EV_MINPRI);

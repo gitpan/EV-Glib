@@ -8,14 +8,14 @@ EV::Glib - Embed the glib main loop into EV
 
 =head1 DESCRIPTION
 
-If you want to use EV in a glib/gtk+ program, then you need to look at
+If you want to use EV in a Glib/Gtk+ program, then you need to look at
 the Glib::EV module, not this one, as this module requires you to run EV
 in your main program.
 
-If you want to use glib/gtk+ in an EV program, you are at the right place
+If you want to use Glib/Gtk+ in an EV program, you are at the right place
 here.
 
-This module embed the glib main loop into EV, that is, EV will also handle
+This module embeds the Glib main loop into EV, that is, EV will also handle
 Glib events.
 
 This makes Glib compatible to EV. Calls into the EV main loop are more
@@ -68,7 +68,7 @@ use Carp ();
 use EV ();
 
 BEGIN {
-   $VERSION = '0.1';
+   $VERSION = '2.0';
 
    require XSLoader;
    XSLoader::load (EV::Glib, $VERSION);

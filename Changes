@@ -1,4 +1,7 @@
 Revision history for EV::Glib
 
+2.0  Sat Dec 22 17:49:53 CET 2007
+	- upgrade to EV version 2.0 API.
+
 0.1  Sat Dec  8 16:11:02 CET 2007
 	- original version, a Glib::EV clone.
