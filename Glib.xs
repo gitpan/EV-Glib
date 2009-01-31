@@ -115,7 +115,7 @@ check_cb (EV_P_ ev_check *w, int revents)
 
           pfd->revents |= pfd->events &
             ((revents & EV_READ ? G_IO_IN : 0)
-             | (revents & EV_READ ? G_IO_OUT : 0));
+             | (revents & EV_WRITE ? G_IO_OUT : 0));
         }
 
       ev_io_stop (EV_A, iow);

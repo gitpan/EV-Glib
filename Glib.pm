@@ -4,7 +4,7 @@ EV::Glib - Embed the glib main loop into EV
 
 =head1 SYNOPSIS
 
- use Glib::EV;
+ use EV::Glib;
 
 =head1 DESCRIPTION
 
@@ -28,7 +28,7 @@ I<have> to use the EV loop functions).
 
 This module has no dependency on the existing Glib perl interface, as it
 uses glib directly. The Glib module can, however, be used without any
-problems (as long as evereybody uses shared libraries to keep everybody
+problems (as long as everybody uses shared libraries to keep everybody
 else happy).
 
 =item * The default context will be added to EV when the module is loaded.
@@ -45,7 +45,7 @@ I<have> to use EV's equivalents, i.e. C<EV::unloop>.
 =item * You cannot call any glib loop functions while its context is active.
 
 This module uses a prepare watcher at lowest priority to dispatch glib
-events and activate the main context. The context will be deactivates in a
+events and activate the main context. The context will be deactivated in a
 check watcher of highest priority.
 
 That means that glib events will be dispatched with lowest priority, and
@@ -68,7 +68,7 @@ use Carp ();
 use EV ();
 
 BEGIN {
-   $VERSION = '2.0';
+   $VERSION = '2.01';
 
    require XSLoader;
    XSLoader::load (EV::Glib, $VERSION);
